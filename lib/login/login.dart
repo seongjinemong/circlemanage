@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:circlemanage/login/create.dart';
 import 'package:circlemanage/resource/dimen.dart';
+import 'package:circlemanage/home/home.dart';
 
 class LoginPage extends StatefulWidget{
   @override
@@ -114,6 +115,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void Login() {
-
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
