@@ -10,14 +10,16 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State<LoginPage> {
 
-  String _email;
-  String _password;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _email, _password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child:SingleChildScrollView(
+      body: Form(
+        key: _formKey,
+        child: Center(
+        child: SingleChildScrollView(
           child: Padding(
           padding: const EdgeInsets.all(40.0),
           child: Column(
@@ -82,7 +84,9 @@ class _LoginPageState extends State<LoginPage> {
                         'Login',
                         style: TextStyle(color: Colors.white, fontSize: 25),
                       ),
-                      onPressed: Login,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      },
                     ),
                   ),
                 ],
@@ -111,10 +115,22 @@ class _LoginPageState extends State<LoginPage> {
         ),
         ),
       ),
+      ),
     );
   }
 
-  void Login() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+  void signIn() async {
+    if(_formKey.currentState.validate()){
+      _formKey.currentState.save();
+      try{
+        //FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyHome(/*user: user*/)));
+      }catch(e){
+        print(e.message);
+        setState(() {
+
+        });
+      }
+    }
   }
 }

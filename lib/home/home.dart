@@ -7,6 +7,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int circlenum = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold (
@@ -16,100 +19,43 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child:Center(
           child: Container(
-            padding: EdgeInsets.only(top: 30, bottom: 20),
+            padding: EdgeInsets.all(20),
             child: Wrap(
           spacing: 20,
           runSpacing: 20,
           children: <Widget>[
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
-            Container(
-              height: 200,
-              width: 170,
-              child: RaisedButton(
-                  elevation: Dimen.elevation,
-                  highlightElevation: Dimen.highlightelevation,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  color: Colors.blue,
-                  child: Text("Circle 1"),
-                  onPressed: () {},
-                ),
-            ),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
+            circles(),
           ],
         ),
           ),
       ),
       )
     );
+  }
+
+  Widget circles () {
+
+    circlenum++;
+
+    return Container(
+              height: 180,
+              width: 150,
+              child: RaisedButton(
+                  elevation: Dimen.elevation,
+                  highlightElevation: Dimen.highlightelevation,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  color: Colors.blue,
+                  child: Text("Circle" + circlenum.toString()),
+                  onPressed: () {},
+                ),
+            );
   }
 }
