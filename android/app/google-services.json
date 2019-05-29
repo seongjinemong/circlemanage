@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "527991380550",
+    "firebase_url": "https://circlemanage-3027a.firebaseio.com",
+    "project_id": "circlemanage-3027a",
+    "storage_bucket": "circlemanage-3027a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527991380550:android:d9de11285664626c",
+        "android_client_info": {
+          "package_name": "com.sjcomp.circlemanage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527991380550-msmg34piq79bn3iusrq1667fvdg9qirg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQZ27PSt3wHOTGiuep1VQ9vq6YOScSMzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527991380550-msmg34piq79bn3iusrq1667fvdg9qirg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

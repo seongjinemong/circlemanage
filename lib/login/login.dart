@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.white, fontSize: 25),
                       ),
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        signIn();
                       },
                     ),
                   ),
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
       }catch(e){
         print(e.message);
         setState(() {
-
+          print("Error");
         });
       }
     }
