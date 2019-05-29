@@ -21,24 +21,37 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             padding: EdgeInsets.all(20),
             child: Wrap(
-          spacing: 20,
-          runSpacing: 20,
-          children: <Widget>[
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-            circles(),
-          ],
-        ),
+              spacing: 20,
+              runSpacing: 20,
+              children: circle()
+            ),
           ),
-      ),
+        ),
       )
     );
+  }
+
+  List<Widget> circle() {
+    List<Widget> l = [];
+
+    for(int i=1; i<=100; i++) {
+      l.add(
+        Container(
+              height: 180,
+              width: 150,
+              child: RaisedButton(
+                  elevation: Dimen.elevation,
+                  highlightElevation: Dimen.highlightelevation,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  color: Colors.blue,
+                  child: Text("Circle" + i.toString()),
+                  onPressed: () {},
+                ),
+            )
+      );
+    }
+
+    return l;
   }
 
   Widget circles () {

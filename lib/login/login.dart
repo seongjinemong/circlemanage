@@ -46,10 +46,11 @@ class _LoginPageState extends State<LoginPage> {
                   onSaved: (String value) {
                     _email = value;
                   },
-                  validator: (String value) {
+                  /*validator: (String value) {
                     return value.contains('@')
                         ? 'Do not use the @ char.' : null;
                   },
+                  */
                 ),
               ),
               Padding(
@@ -64,10 +65,11 @@ class _LoginPageState extends State<LoginPage> {
                   onSaved: (String value) {
                     _password = value;
                   },
-                  validator: (String value) {
+                  /*validator: (String value) {
                     return value.contains('@')
                         ? 'Do not use the @ char.' : null;
                   },
+                  */
                 ),
               ),
               Row(
