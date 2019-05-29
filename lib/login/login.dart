@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circlemanage/login/create.dart';
 import 'package:circlemanage/resource/dimen.dart';
 import 'package:circlemanage/home/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget{
   @override
@@ -123,8 +124,8 @@ class _LoginPageState extends State<LoginPage> {
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
       try{
-        //FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
-        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyHome(/*user: user*/)));
+        FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(/*user: user*/)));
       }catch(e){
         print(e.message);
         setState(() {
