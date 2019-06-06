@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:circlemanage/resource/dimen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
+  final FirebaseUser user;
+
+  HomePage({Key key, this.user}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _HomePageState();
 }
@@ -16,16 +21,53 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('Circles You\'re In'),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Wrap(spacing: 20, runSpacing: 20, children: circle()),
-            ),
-          ),
-        ));
+        body: StreamBuilder(
+            stream: Firestore.instance.collection('users').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return LinearProgressIndicator();
+              }
+              return Center(
+                child: Container(
+                  child: Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    children: <Widget>[
+                      if (snapshot.data.documents['testuser']['circlenames']
+                              .length ==
+                          0)
+                        Text('No circles to display...!!')
+                      else
+                        for (var i = 0;
+                            i <
+                                snapshot
+                                    .data
+                                    .documents[widget.user.uid]['circlenames']
+                                    .length;
+                            i++)
+                          Container(
+                            height: 180,
+                            width: 150,
+                            child: RaisedButton(
+                              elevation: Dimen.elevation,
+                              highlightElevation: Dimen.highlightelevation,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              color: Colors.blue,
+                              child: Text(
+                                  snapshot.data.documents[widget.user.uid]
+                                      ['circlenames'][i]),
+                              onPressed: () {},
+                            ),
+                          )
+                    ],
+                  ),
+                ),
+              );
+            }));
   }
 
+  /*
   List<Widget> circle() {
     List<Widget> list = [];
     List circlenames = [];
@@ -81,4 +123,5 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+  */
 }
