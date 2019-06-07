@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int circlenum = 0;
+  String _useruid;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,10 @@ class _HomePageState extends State<HomePage> {
           title: Text('Circles You\'re In'),
         ),
         body: StreamBuilder(
-            stream: Firestore.instance.collection('users').snapshots(),
+            stream: Firestore.instance
+                .collection('users')
+                .document(widget.user.uid)
+                .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return LinearProgressIndicator();
@@ -33,33 +37,38 @@ class _HomePageState extends State<HomePage> {
                     spacing: 20.0,
                     runSpacing: 20.0,
                     children: <Widget>[
-                      if (snapshot.data.documents['testuser']['circlenames']
+                      /*
+                      if (snapshot
+                              .data
+                              .documents[widget.user.uid]['circlenames']
                               .length ==
                           0)
                         Text('No circles to display...!!')
                       else
-                        for (var i = 0;
-                            i <
-                                snapshot
-                                    .data
-                                    .documents[widget.user.uid]['circlenames']
-                                    .length;
-                            i++)
-                          Container(
+
+                          )
+                          */
+                      for (var i = 0;
+                          i < snapshot.data['circlenames'].length;
+                          i++)
+                        Container(
                             height: 180,
                             width: 150,
                             child: RaisedButton(
-                              elevation: Dimen.elevation,
-                              highlightElevation: Dimen.highlightelevation,
+                              elevation: 15.0,
+                              highlightElevation: 5.0,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
+                                  borderRadius: BorderRadius.circular(30.0)),
                               color: Colors.blue,
                               child: Text(
-                                  snapshot.data.documents[widget.user.uid]
-                                      ['circlenames'][i]),
+                                snapshot.data['circlenames'][i],
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
                               onPressed: () {},
-                            ),
-                          )
+                            ))
                     ],
                   ),
                 ),
