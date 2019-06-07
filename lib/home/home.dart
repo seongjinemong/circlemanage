@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circlemanage/resource/dimen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:circlemanage/circlepage/viewcircle.dart';
 
 class HomePage extends StatefulWidget {
   final FirebaseUser user;
@@ -29,7 +30,9 @@ class _HomePageState extends State<HomePage> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return LinearProgressIndicator();
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
               }
               return Center(
                 child: Container(
@@ -67,7 +70,15 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            CirclePage(
+                                                circlename: snapshot
+                                                    .data['circlenames'][i])));
+                              },
                             ))
                     ],
                   ),
