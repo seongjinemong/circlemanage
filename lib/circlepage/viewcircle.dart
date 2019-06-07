@@ -30,7 +30,7 @@ class _CirclePageState extends State<CirclePage> {
             }
             return Center(
               child: Container(
-                child: Text(snapshot.data['task'][0]['taskname']),
+                child: Text(snapshot.data['name']),
               ),
             );
           },

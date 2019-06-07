@@ -71,6 +71,7 @@ class _CreatePageState extends State<CreatePage> {
                       onSaved: (String value) {
                         _password = value;
                       },
+                      obscureText: true,
                       /*
                       validator: (String value) {
                         return value.contains('@')
@@ -92,6 +93,7 @@ class _CreatePageState extends State<CreatePage> {
                       onSaved: (String value) {
                         _passwordconfirm = value;
                       },
+                      obscureText: true,
                       /*
                       validator: (String value) {
                         return value.contains('@')

@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   */
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(bottom: 20, top: 50),
                     child: TextFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -71,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                       onSaved: (String value) {
                         _password = value;
                       },
+                      obscureText: true,
                       /*validator: (String value) {
                     return value.contains('@')
                         ? 'Do not use the @ char.' : null;
