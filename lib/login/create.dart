@@ -145,9 +145,7 @@ class _CreatePageState extends State<CreatePage> {
           Firestore.instance.collection('users').document(user.uid).setData({
             "email": _email,
             "uid": user.uid,
-            "circlenames": [
-              "Init",
-            ],
+            "circlenames": [],
           });
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomePage(user: user)));

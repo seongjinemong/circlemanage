@@ -61,12 +61,12 @@ class _HomePageState extends State<HomePage> {
                               elevation: 15.0,
                               highlightElevation: 5.0,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(15.0)),
+                              color: Colors.white,
                               child: Text(
                                 snapshot.data['circlenames'][i],
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),
