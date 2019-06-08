@@ -8,7 +8,7 @@ class TabInfo extends StatefulWidget {
 class _TabInfoState extends State<TabInfo> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
       child: Text('TabInfo'),
     );
   }

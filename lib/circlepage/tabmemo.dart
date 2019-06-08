@@ -8,7 +8,7 @@ class TabMemo extends StatefulWidget {
 class _TabMemoState extends State<TabMemo> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
       child: Text('TabMemo'),
     );
   }

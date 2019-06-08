@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   Image.asset(
                     'lib/assets/circle.png',
-                    width: 200,
-                    height: 200,
+                    width: 180,
+                    height: 180,
                   ),
                   /*
                   Padding(

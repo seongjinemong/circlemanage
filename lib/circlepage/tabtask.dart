@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TabTask extends StatefulWidget {
   @override
@@ -8,8 +9,9 @@ class TabTask extends StatefulWidget {
 class _TabTaskState extends State<TabTask> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('TabTask'),
+    return Scaffold(
+      body: StreamBuilder(
+          stream: Firestore.instance.collection(path), builder: null),
     );
   }
 }

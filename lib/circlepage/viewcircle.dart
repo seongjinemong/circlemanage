@@ -53,44 +53,37 @@ class _CirclePageState extends State<CirclePage>
           child: new TabBar(
             tabs: <Tab>[
               new Tab(
-                // set icon to the tab
-                icon:
-                    new Icon(Icons.check_circle_outline, color: Colors.black45),
-                /*
-                child: Container(
-                  child: Text(
-                    "Day",
-                    style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                //icon: new Icon(Icons.check_circle_outline, color: Colors.black45),
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Image.asset(
+                    'lib/assets/circle_final.png',
+                    width: 50,
+                    height: 50,
                   ),
                 ),
-                */
               ),
               new Tab(
-                icon: new Icon(Icons.adb, color: Colors.black45),
-                /*
-                child: Text(
-                  "Month",
-                  style: TextStyle(
-                      color: Colors.black45,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                //icon: new Icon(Icons.adb, color: Colors.black45),
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'lib/assets/check.png',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
-                */
               ),
               new Tab(
-                icon: new Icon(Icons.airport_shuttle, color: Colors.black45),
-                /*
-                child: Text(
-                  "Year",
-                  style: TextStyle(
-                      color: Colors.black45,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                //icon: new Icon(Icons.airport_shuttle, color: Colors.black45),
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'lib/assets/memo.png',
+                    width: 50,
+                    height: 50,
+                  ),
                 ),
-                */
               ),
             ],
             // setup the controller
