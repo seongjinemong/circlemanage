@@ -271,7 +271,7 @@ class _CirclePageState extends State<CirclePage>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            color: Colors.lightBlue,
+            color: Colors.orangeAccent,
             child: Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Text(
@@ -363,7 +363,7 @@ class _CirclePageState extends State<CirclePage>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
-            color: Colors.lightBlue,
+            color: Colors.lightGreen,
             child: Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Text(
