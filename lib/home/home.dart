@@ -20,9 +20,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xffffffff),
+        /*
         appBar: AppBar(
-          title: Text('Circles You\'re In'),
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          title: Center(
+            child: Text(
+              'Circles You\'re In',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 30.0,
+              ),
+            ),
+          ),
         ),
+        */
         body: StreamBuilder(
             stream: Firestore.instance
                 .collection('users')
@@ -36,50 +49,68 @@ class _HomePageState extends State<HomePage> {
               }
               return Center(
                 child: Container(
-                  child: Wrap(
-                    spacing: 20.0,
-                    runSpacing: 20.0,
+                  child: Column(
                     children: <Widget>[
-                      /*
-                      if (snapshot
-                              .data
-                              .documents[widget.user.uid]['circlenames']
-                              .length ==
-                          0)
-                        Text('No circles to display...!!')
-                      else
+                      Padding(
+                        padding: const EdgeInsets.all(100.0),
+                        child: Text(
+                          'Your Circles',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Wrap(
+                        spacing: 20.0,
+                        runSpacing: 20.0,
+                        children: <Widget>[
+                          /*
+                          if (snapshot
+                                  .data
+                                  .documents[widget.user.uid]['circlenames']
+                                  .length ==
+                              0)
+                            Text('No circles to display...!!')
+                          else
 
-                          )
-                          */
-                      for (var i = 0;
-                          i < snapshot.data['circlenames'].length;
-                          i++)
-                        Container(
-                            height: 180,
-                            width: 150,
-                            child: RaisedButton(
-                              elevation: 15.0,
-                              highlightElevation: 5.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0)),
-                              color: Colors.white,
-                              child: Text(
-                                snapshot.data['circlenames'][i],
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            CirclePage(
-                                                circlename: snapshot
-                                                    .data['circlenames'][i])));
-                              },
-                            ))
+                              )
+                              */
+                          for (var i = 0;
+                              i < snapshot.data['circlenames'].length;
+                              i++)
+                            Container(
+                                height: 180,
+                                width: 150,
+                                child: RaisedButton(
+                                  elevation: 15.0,
+                                  highlightElevation: 5.0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                  color: Colors.white,
+                                  child: Text(
+                                    snapshot.data['circlenames'][i],
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                CirclePage(
+                                                    circlename: snapshot
+                                                            .data['circlenames']
+                                                        [i])));
+                                  },
+                                ))
+                        ],
+                      ),
                     ],
                   ),
                 ),

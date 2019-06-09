@@ -22,29 +22,22 @@ class _CirclePageState extends State<CirclePage>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
-  void initState() {
-    super.initState();
-
-    // Initialize the Tab Controller
-    controller = new TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    // Dispose of the Tab Controller
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
+        elevation: 20.0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: Text(widget.circlename),
+              child: Text(
+                widget.circlename,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             FlatButton(
               child: Icon(
@@ -64,7 +57,6 @@ class _CirclePageState extends State<CirclePage>
             ),
           ],
         ),
-        elevation: 20.0,
       ),
       body: StreamBuilder(
         stream: Firestore.instance
@@ -113,11 +105,13 @@ class _CirclePageState extends State<CirclePage>
                   ),
                 ),
               ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _taskstat(
-                      document, document['taskstat'], index) //<Widget>[
-                  /*
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: _taskstat(
+                        document, document['taskstat'], index) //<Widget>[
+                    /*
                   RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -167,8 +161,9 @@ class _CirclePageState extends State<CirclePage>
                     ),
                   ),
                   */
-                  //],
-                  ),
+                    //],
+                    ),
+              ),
             ],
           ),
         ),
