@@ -20,8 +20,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffffffff),
-        /*
+      backgroundColor: const Color(0xffffffff),
+      /*
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
@@ -36,38 +36,38 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         */
-        body: StreamBuilder(
-            stream: Firestore.instance
-                .collection('users')
-                .document(widget.user.uid)
-                .snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return Center(
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(100.0),
-                        child: Text(
-                          'Your Circles',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+      body: StreamBuilder(
+        stream: Firestore.instance
+            .collection('users')
+            .document(widget.user.uid)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Center(
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(100.0),
+                    child: Text(
+                      'Your Circles',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Wrap(
-                        spacing: 20.0,
-                        runSpacing: 20.0,
-                        children: <Widget>[
-                          /*
+                    ),
+                  ),
+                  Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    children: <Widget>[
+                      /*
                           if (snapshot
                                   .data
                                   .documents[widget.user.uid]['circlenames']
@@ -78,44 +78,47 @@ class _HomePageState extends State<HomePage> {
 
                               )
                               */
-                          for (var i = 0;
-                              i < snapshot.data['circlenames'].length;
-                              i++)
-                            Container(
-                                height: 180,
-                                width: 150,
-                                child: RaisedButton(
-                                  elevation: 15.0,
-                                  highlightElevation: 5.0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(15.0)),
-                                  color: Colors.white,
-                                  child: Text(
-                                    snapshot.data['circlenames'][i],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                CirclePage(
-                                                    circlename: snapshot
-                                                            .data['circlenames']
-                                                        [i])));
-                                  },
-                                ))
-                        ],
-                      ),
+                      for (var i = 0;
+                          i < snapshot.data['circlenames'].length;
+                          i++)
+                        Container(
+                          height: 180,
+                          width: 150,
+                          child: RaisedButton(
+                            elevation: 15.0,
+                            highlightElevation: 5.0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0)),
+                            color: Colors.white,
+                            child: Text(
+                              snapshot.data['circlenames'][i],
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => CirclePage(
+                                        circlename: snapshot.data['circlenames']
+                                            [i],
+                                      ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                     ],
                   ),
-                ),
-              );
-            }));
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 
   /*
