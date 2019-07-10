@@ -63,6 +63,7 @@ class _NewTaskState extends State<NewTask> {
                                 .setData(
                                     {'taskname': _newtaskname, 'taskstat': 0})
                           },
+                        Navigator.pop(context),
                       },
                 ),
                 Padding(
@@ -91,6 +92,7 @@ class _NewTaskState extends State<NewTask> {
                                   .setData(
                                       {'taskname': _newtaskname, 'taskstat': 1})
                             },
+                          Navigator.pop(context),
                         },
                   ),
                 ),
@@ -120,6 +122,7 @@ class _NewTaskState extends State<NewTask> {
                                   .setData(
                                       {'taskname': _newtaskname, 'taskstat': 2})
                             },
+                          Navigator.pop(context),
                         },
                   ),
                 ),
