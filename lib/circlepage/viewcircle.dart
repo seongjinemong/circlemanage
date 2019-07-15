@@ -28,54 +28,91 @@ class _CirclePageState extends State<CirclePage>
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
         elevation: 20.0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                widget.circlename,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+        title: Text(
+          widget.circlename,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     Expanded(
+        //       child: Text(
+        //         widget.circlename,
+        //         style: TextStyle(
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //       ),
+        //     ),
+        //     FlatButton(
+        //       child: Icon(
+        //         Icons.add_box,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: () => {
+        //             showDialog(
+        //               context: context,
+        //               builder: (BuildContext context) {
+        //                 return NewTask(
+        //                   circlename: widget.circlename,
+        //                 );
+        //               },
+        //             ),
+        //           },
+        //     ),
+        //   ],
+        // ),
+      ),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          StreamBuilder(
+            stream: Firestore.instance
+                .collection('circles')
+                .document(widget.circlename)
+                .collection('task')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData)
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              return ListView.builder(
+                itemExtent: 140.0,
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) => _buildListItem(
+                    context, snapshot.data.documents[index], index),
+              );
+            },
+          ),
+          Positioned(
+            bottom: 30.0,
+            child: RaisedButton(
+              elevation: 10,
+              color: Colors.orangeAccent,
+              shape: StadiumBorder(),
+              child: Padding(
+                padding:
+                    EdgeInsets.only(top: 15, bottom: 15, left: 80, right: 80),
+                child: Text(
+                  'Add Task',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-            ),
-            FlatButton(
-              child: Icon(
-                Icons.add_box,
-                color: Colors.white,
-              ),
-              onPressed: () => {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return NewTask(
-                          circlename: widget.circlename,
-                        );
-                      },
-                    ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return NewTask(
+                      circlename: widget.circlename,
+                    );
                   },
+                );
+              },
             ),
-          ],
-        ),
-      ),
-      body: StreamBuilder(
-        stream: Firestore.instance
-            .collection('circles')
-            .document(widget.circlename)
-            .collection('task')
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          return ListView.builder(
-            itemExtent: 140.0,
-            itemCount: snapshot.data.documents.length,
-            itemBuilder: (context, index) =>
-                _buildListItem(context, snapshot.data.documents[index], index),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
