@@ -36,92 +36,100 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         */
-      body: StreamBuilder(
-        stream: Firestore.instance
-            .collection('users')
-            .document(widget.user.uid)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return Center(
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(100.0),
-                    child: Text(
-                      'Your Circles',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Wrap(
-                    spacing: 20.0,
-                    runSpacing: 20.0,
-                    children: <Widget>[
-                      /*
-                          if (snapshot
-                                  .data
-                                  .documents[widget.user.uid]['circlenames']
-                                  .length ==
-                              0)
-                            Text('No circles to display...!!')
-                          else
-
-                              )
-                              */
-                      for (var i = 0;
-                          i < snapshot.data['circlenames'].length;
-                          i++)
-                        Container(
-                          height: 180,
-                          width: 150,
-                          child: RaisedButton(
-                            elevation: 15.0,
-                            highlightElevation: 5.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0)),
-                            color: Colors.white,
-                            child: Text(
-                              snapshot.data['circlenames'][i],
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) => CirclePage(
-                                        circlename: snapshot.data['circlenames']
-                                            [i],
-                                      ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            expandedHeight: 200,
+            floating: false,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                'Your Circles',
+                style: TextStyle(color: Colors.black),
+              ),
+              background: Container(
+                color: Colors.white,
               ),
             ),
-          );
-        },
+          ),
+          SliverFillRemaining(
+            child: StreamBuilder(
+              stream: Firestore.instance
+                  .collection('users')
+                  .document(widget.user.uid)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 20.0),
+                    alignment: Alignment.center,
+                    child: Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      children: <Widget>[
+                        /*
+                                  if (snapshot
+                                          .data
+                                          .documents[widget.user.uid]['circlenames']
+                                          .length ==
+                                      0)
+                                    Text('No circles to display...!!')
+                                  else
+
+                                      )
+                                      */
+                        for (var i = 0;
+                            i < snapshot.data['circlenames'].length;
+                            i++)
+                          Container(
+                            height: 180,
+                            width: 150,
+                            child: RaisedButton(
+                              elevation: 15.0,
+                              highlightElevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0)),
+                              color: Colors.white,
+                              child: Text(
+                                snapshot.data['circlenames'][i],
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        CirclePage(
+                                          circlename:
+                                              snapshot.data['circlenames'][i],
+                                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  /*
+/*
   List<Widget> circle() {
     List<Widget> list = [];
     List circlenames = [];
