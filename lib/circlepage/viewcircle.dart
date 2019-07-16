@@ -95,9 +95,21 @@ class _CirclePageState extends State<CirclePage>
               child: Padding(
                 padding:
                     EdgeInsets.only(top: 15, bottom: 15, left: 80, right: 80),
-                child: Text(
-                  'Add Task',
-                  style: TextStyle(color: Colors.white),
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                    Text(
+                      ' Add Task',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               onPressed: () {
@@ -142,13 +154,11 @@ class _CirclePageState extends State<CirclePage>
                   ),
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _taskstat(
-                        document, document['taskstat'], index) //<Widget>[
-                    /*
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _taskstat(
+                      document, document['taskstat'], index) //<Widget>[
+                  /*
                   RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -158,7 +168,7 @@ class _CirclePageState extends State<CirclePage>
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                       child: Text(
                         'Prepare',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        style: TextStyle(fontSize: 15, color: Colors.white),
                       ),
                     ),
                     onPressed: () => {},
@@ -174,7 +184,7 @@ class _CirclePageState extends State<CirclePage>
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: Text(
                           'Proceed',
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       ),
                       onPressed: () => {},
@@ -191,16 +201,15 @@ class _CirclePageState extends State<CirclePage>
                         padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: Text(
                           'Complete',
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          style: TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       ),
                       onPressed: () => {},
                     ),
                   ),
                   */
-                    //],
-                    ),
-              ),
+                  //],
+                  ),
             ],
           ),
         ),
@@ -213,116 +222,84 @@ class _CirclePageState extends State<CirclePage>
 
     if (taskstat == 0) {
       list.add(
-        RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+        Flexible(
+          flex: 1,
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            color: Colors.lightBlue,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+              child: Text(
+                'Prepare',
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ),
+            ),
+            onPressed: () => {},
           ),
-          color: Colors.lightBlue,
+        ),
+      );
+      list.add(
+        Flexible(
+          flex: 1,
           child: Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Text(
-              'Prepare',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ),
-          onPressed: () => {},
-        ),
-      );
-      list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            color: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child: Text(
-                'Proceed',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
+              color: Colors.grey,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Proceed',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {
+                    document.reference.updateData(
+                      {
+                        'taskstat': 1,
+                      },
+                    ),
+                  },
             ),
-            onPressed: () => {
-                  document.reference.updateData(
-                    {
-                      'taskstat': 1,
-                    },
-                  ),
-                },
           ),
         ),
       );
       list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            color: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child: Text(
-                'Complete',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
+              color: Colors.grey,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Complete',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {
+                    document.reference.updateData(
+                      {
+                        'taskstat': 2,
+                      },
+                    ),
+                  },
             ),
-            onPressed: () => {
-                  document.reference.updateData(
-                    {
-                      'taskstat': 2,
-                    },
-                  ),
-                },
           ),
         ),
       );
     } else if (taskstat == 1) {
       list.add(
-        RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          color: Colors.grey,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Text(
-              'Prepare',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ),
-          onPressed: () => {
-                document.reference.updateData(
-                  {
-                    'taskstat': 0,
-                  },
-                ),
-              },
-        ),
-      );
-      list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            color: Colors.orangeAccent,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child: Text(
-                'Proceed',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            ),
-            onPressed: () => {},
-          ),
-        ),
-      );
-      list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
+        Flexible(
+          flex: 1,
           child: RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -331,46 +308,74 @@ class _CirclePageState extends State<CirclePage>
             child: Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Text(
-                'Complete',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                'Prepare',
+                style: TextStyle(fontSize: 15, color: Colors.white),
               ),
             ),
             onPressed: () => {
                   document.reference.updateData(
                     {
-                      'taskstat': 2,
+                      'taskstat': 0,
                     },
                   ),
                 },
+          ),
+        ),
+      );
+      list.add(
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              color: Colors.orangeAccent,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Proceed',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {},
+            ),
+          ),
+        ),
+      );
+      list.add(
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              color: Colors.grey,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Complete',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {
+                    document.reference.updateData(
+                      {
+                        'taskstat': 2,
+                      },
+                    ),
+                  },
+            ),
           ),
         ),
       );
     } else if (taskstat == 2) {
       list.add(
-        RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          color: Colors.grey,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Text(
-              'Prepare',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ),
-          onPressed: () => {
-                document.reference.updateData(
-                  {
-                    'taskstat': 0,
-                  },
-                ),
-              },
-        ),
-      );
-      list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
+        Flexible(
+          flex: 1,
           child: RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
@@ -379,14 +384,14 @@ class _CirclePageState extends State<CirclePage>
             child: Padding(
               padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: Text(
-                'Proceed',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                'Prepare',
+                style: TextStyle(fontSize: 15, color: Colors.white),
               ),
             ),
             onPressed: () => {
                   document.reference.updateData(
                     {
-                      'taskstat': 1,
+                      'taskstat': 0,
                     },
                   ),
                 },
@@ -394,21 +399,52 @@ class _CirclePageState extends State<CirclePage>
         ),
       );
       list.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0),
-          child: RaisedButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            color: Colors.lightGreen,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child: Text(
-                'Complete',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
+              color: Colors.grey,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Proceed',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {
+                    document.reference.updateData(
+                      {
+                        'taskstat': 1,
+                      },
+                    ),
+                  },
             ),
-            onPressed: () => {},
+          ),
+        ),
+      );
+      list.add(
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              color: Colors.lightGreen,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Text(
+                  'Complete',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                ),
+              ),
+              onPressed: () => {},
+            ),
           ),
         ),
       );
