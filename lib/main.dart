@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:circlemanage/login/login.dart';
-import 'package:circlemanage/home/home.dart';
 
 void main() => runApp(MyApp());
 

@@ -17,41 +17,70 @@ class _NewTaskState extends State<NewTask> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        content: Form(
-      key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Task Name',
+      content: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Task Name',
+                ),
+                onSaved: (String value) {
+                  _newtaskname = value;
+                },
               ),
-              onSaved: (String value) {
-                _newtaskname = value;
-              },
             ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: <Widget>[
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: Colors.lightBlue,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                    child: Text(
-                      'Prepare',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: <Widget>[
+                  RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
+                    color: Colors.lightBlue,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                      child: Text(
+                        'Prepare',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                    onPressed: () => {
+                      if (_formKey.currentState.validate())
+                        {
+                          _formKey.currentState.save(),
+                          Firestore.instance
+                              .collection('circles')
+                              .document(widget.circlename)
+                              .collection('task')
+                              .document()
+                              .setData(
+                                  {'taskname': _newtaskname, 'taskstat': 0})
+                        },
+                      Navigator.pop(context),
+                    },
                   ),
-                  onPressed: () => {
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: Text(
+                          'Proceed',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                      onPressed: () => {
                         if (_formKey.currentState.validate())
                           {
                             _formKey.currentState.save(),
@@ -61,76 +90,48 @@ class _NewTaskState extends State<NewTask> {
                                 .collection('task')
                                 .document()
                                 .setData(
-                                    {'taskname': _newtaskname, 'taskstat': 0})
+                                    {'taskname': _newtaskname, 'taskstat': 1})
                           },
                         Navigator.pop(context),
                       },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.grey,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      child: Text(
-                        'Proceed',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    ),
-                    onPressed: () => {
-                          if (_formKey.currentState.validate())
-                            {
-                              _formKey.currentState.save(),
-                              Firestore.instance
-                                  .collection('circles')
-                                  .document(widget.circlename)
-                                  .collection('task')
-                                  .document()
-                                  .setData(
-                                      {'taskname': _newtaskname, 'taskstat': 1})
-                            },
-                          Navigator.pop(context),
-                        },
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    color: Colors.grey,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-                      child: Text(
-                        'Complete',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
+                      color: Colors.grey,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: Text(
+                          'Complete',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                      onPressed: () => {
+                        if (_formKey.currentState.validate())
+                          {
+                            _formKey.currentState.save(),
+                            Firestore.instance
+                                .collection('circles')
+                                .document(widget.circlename)
+                                .collection('task')
+                                .document()
+                                .setData(
+                                    {'taskname': _newtaskname, 'taskstat': 2})
+                          },
+                        Navigator.pop(context),
+                      },
                     ),
-                    onPressed: () => {
-                          if (_formKey.currentState.validate())
-                            {
-                              _formKey.currentState.save(),
-                              Firestore.instance
-                                  .collection('circles')
-                                  .document(widget.circlename)
-                                  .collection('task')
-                                  .document()
-                                  .setData(
-                                      {'taskname': _newtaskname, 'taskstat': 2})
-                            },
-                          Navigator.pop(context),
-                        },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
