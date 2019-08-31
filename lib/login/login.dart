@@ -18,117 +18,130 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset(
-                    'lib/assets/circle.png',
-                    width: 180,
-                    height: 180,
-                  ),
-                  /*
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 50),
-                    child: Text(
-                      'Circle\nManage',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 50),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            Positioned(
+              top: 10,
+              right: 10,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '아이디가 없다면?',
                     ),
-                  ),
-                  */
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20, top: 50),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        //icon: Icon(Icons.email),
-                        //hintText: 'What do people call you?',
-                        labelText: 'Email',
-                      ),
-                      onSaved: (String value) {
-                        _email = value;
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CreatePage()));
                       },
-                      /*validator: (String value) {
-                    return value.contains('@')
-                        ? 'Do not use the @ char.' : null;
-                  },
-                  */
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        //icon: Icon(Icons.lock),
-                        //hintText: 'What do people call you?',
-                        labelText: 'Password',
+                      child: Text(
+                        "회원가입",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
-                      onSaved: (String value) {
-                        _password = value;
-                      },
-                      obscureText: true,
-                      /*validator: (String value) {
-                    return value.contains('@')
-                        ? 'Do not use the @ char.' : null;
-                  },
-                  */
                     ),
-                  ),
-                  Row(
+                  ],
+                ),
+              ),
+            ),
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(
-                          padding: EdgeInsets.only(
-                              right: 100, left: 100, top: 15, bottom: 15),
-                          elevation: Dimen.elevation,
-                          highlightElevation: Dimen.highlightelevation,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          color: Colors.blue,
+                      Container(
+                        width: 180,
+                        height: 180,
+                        child: Center(
                           child: Text(
-                            'Login',
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                            '로고',
+                            style: TextStyle(fontSize: 20),
                           ),
-                          onPressed: () {
-                            signIn();
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20, top: 50),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            //icon: Icon(Icons.email),
+                            //hintText: 'What do people call you?',
+                            labelText: 'Email',
+                          ),
+                          onSaved: (String value) {
+                            _email = value;
                           },
+                          /*validator: (String value) {
+                      return value.contains('@')
+                          ? 'Do not use the @ char.' : null;
+                    },
+                    */
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            //icon: Icon(Icons.lock),
+                            //hintText: 'What do people call you?',
+                            labelText: 'Password',
+                          ),
+                          onSaved: (String value) {
+                            _password = value;
+                          },
+                          obscureText: true,
+                          /*validator: (String value) {
+                      return value.contains('@')
+                          ? 'Do not use the @ char.' : null;
+                    },
+                    */
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'No Account?',
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CreatePage()));
-                          },
-                          child: Text("Create New",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
+            Positioned(
+              bottom: 30,
+              child: RaisedButton(
+                padding: EdgeInsets.only(top: 15, bottom: 15),
+                elevation: Dimen.getelevation(),
+                highlightElevation: Dimen.highlightelevation,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                color: Theme.of(context).primaryColor,
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 60,
+                  child: Center(
+                    child: Text(
+                      '로그인',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        //fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  signIn();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

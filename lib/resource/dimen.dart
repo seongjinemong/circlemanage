@@ -1,5 +1,5 @@
 class Dimen {
-  static double elevation = 0.0;
+  static double elevation = 20.0;
   static double highlightelevation = 0.0;
 
   static double getelevation() {
