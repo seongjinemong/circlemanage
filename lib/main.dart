@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:circlemanage/login/login.dart';
+import 'package:circlemanage/ict/home.dart';
+
+Map<int, Color> color = {
+  50: Color.fromRGBO(79, 92, 241, .1),
+  100: Color.fromRGBO(79, 92, 241, .2),
+  200: Color.fromRGBO(79, 92, 241, .3),
+  300: Color.fromRGBO(79, 92, 241, .4),
+  400: Color.fromRGBO(79, 92, 241, .5),
+  500: Color.fromRGBO(79, 92, 241, .6),
+  600: Color.fromRGBO(79, 92, 241, .7),
+  700: Color.fromRGBO(79, 92, 241, .8),
+  800: Color.fromRGBO(79, 92, 241, .9),
+  900: Color.fromRGBO(79, 92, 241, 1),
+};
 
 Map<int, Color> color = {
   50: Color.fromRGBO(48, 213, 200, .1),
@@ -27,10 +41,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: myColor,
-        primaryColor: Colors.cyan,
-        accentColor: Colors.cyanAccent,
+        primaryColor: Colors.white,
+        accentColor: const Color(0xFF4f5cf1),
       ),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
